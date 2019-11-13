@@ -1,0 +1,86 @@
+---
+resources:
+- name: opa-policy
+  type: git
+  icon: github-circle
+  source:
+    uri: ((github-url))
+    branch: master
+    username: ((github-user))
+    password: ((github-token))
+- name: github-release-opa
+  type: github-release
+  source:
+    access_token: ((github-token))
+    user: ((github-user))
+    repository: opa-policy
+
+
+jobs:
+  - name: test
+    public: true
+    plan:
+    - get: opa-policy
+      trigger: true
+    - task: run-tests
+      config:
+        platform: linux
+        image_resource:
+          type: registry-image
+          source: { repository: regalme/opa_cli, tag: "firsttry" }
+        inputs:
+          - name: opa-policy
+        run:
+          path: sh
+          args:
+            - -exc
+            - cd opa-policy/policies && opa test . -v
+    - task: version
+      config:
+        platform: linux
+        image_resource:
+          type: registry-image
+          source: { repository: socialengine/github-release }
+        inputs: 
+          - name: opa-policy
+        params: 
+          GITHUB_TOKEN: ((github-token))
+          GITHUB_USER: ((github-user))
+          GITHUB_REPO: ((github-repo))
+        run:
+          path: opa-policy/bin/release_candidate_tag.sh
+  - name: upload-to-registry
+    public: true
+    plan:
+    - get: github-release-opa
+      trigger: true
+      params: {include_source_tarball: true }
+    - task: upload
+      privileged: true
+      config:
+        platform: linux
+        image_resource:
+          type: registry-image
+          source: {repository: jpetazzo/dind}
+        params:
+          AZURE_USERNAME: ((azure-username))
+          AZURE_PASSWORD: ((azure-password))
+          OCI_REPOSITORY: ((oci_repository))
+        inputs: 
+          - name: github-release-opa
+        run:
+          path: sh
+          args: 
+            - -exc
+            - |
+              sudo service docker start
+              docker login -u ${AZURE_USERNAME} -p ${AZURE_PASSWORD} opapolicies.azurecr.io
+              wget https://github.com/instrumenta/conftest/releases/download/v0.14.0/conftest_0.14.0_Linux_x86_64.tar.gz
+              tar xzf conftest*
+              sudo mv conftest /usr/bin
+              cd github-release-opa
+              tar xzf source.tar.gz
+              cd pivotalservices*
+              mv ./policies ./policy
+              conftest push opapolicies.azurecr.io/policies
+              service docker stop
