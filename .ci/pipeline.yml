@@ -34,7 +34,7 @@ jobs:
           path: sh
           args:
             - -exc
-            - cd opa-policy/policies && opa test . -v
+            - cd opa-policy/policies && opa test . -v --threshold 80
     - task: version
       config:
         platform: linux
