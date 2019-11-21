@@ -10,9 +10,12 @@ deny_if_not_exactly_one_primary[msg] {
 }
 
 deny_not_enough_chars[msg] {
-	key := input["product-properties"][".properties.credhub_hsm_provider_partition_password"]["value"]["secret"]
+	key := [ key | 
+    				input["product-properties"][".properties.credhub_key_encryption_passwords"]["value"][i]["primary"] # only do the next statement if this is true
+    				key := input["product-properties"][".properties.credhub_key_encryption_passwords"]["value"][i]["key"]["secret"] 
+	]
+   
+	count(key[0]) < 20
 
-	count(key) < 20
-
-    msg = sprintf("Primary key must be at least 20 characters, found %v", [count(key)])
+  msg = sprintf("Primary key must be at least 20 characters, found %v", [count(key[0])])
 }
