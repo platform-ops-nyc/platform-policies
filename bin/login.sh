@@ -1,3 +1,3 @@
 #!/bin/bash
-fly -t wings sync
-fly -t wings login
+fly -t hush sync
+fly login -t hush -c https://hush-house.pivotal.io/ -n platformservices

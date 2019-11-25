@@ -1,2 +1,2 @@
 #!/bin/bash
-fly -t wings hijack -j opa-policies/${1}
+fly -t hush hijack -j opa-policies/${1}
