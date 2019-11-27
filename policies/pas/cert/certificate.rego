@@ -24,7 +24,7 @@ determine_if_expired(date) = isExpired {
 deny_thirty_days[msg]{
     # must manually define path to cert. JSON input
     # key values are accessed using bracket notation rather than dot "." notation
-    cert := input["properties-configuration"]["iaas_configuration"]["nsx_ca_certificate"]     
+    cert := input #you will need to provide a path to a cert
     expiry := get_certificate_expiry(cert)
     isExpired := determine_if_expired(expiry)
 
