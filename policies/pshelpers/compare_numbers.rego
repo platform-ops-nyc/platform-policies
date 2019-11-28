@@ -1,4 +1,4 @@
-package pshelper
+package pshelpers
 
 isLimitExceeded(limit, set) = exceeded { 
   exceedsLimit := [

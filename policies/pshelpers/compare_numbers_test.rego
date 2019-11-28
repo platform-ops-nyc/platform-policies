@@ -1,4 +1,4 @@
-package pshelper
+package pshelpers
 
 test_limit_equals {
   limit = 20

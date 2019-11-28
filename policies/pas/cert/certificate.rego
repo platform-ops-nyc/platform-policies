@@ -1,4 +1,4 @@
-package main
+package cert
 
 parse_certificate(cert) = parsedCertificate {
     strippedCert := replace(replace(cert, "-----END CERTIFICATE-----", ""), "-----BEGIN CERTIFICATE-----", "")

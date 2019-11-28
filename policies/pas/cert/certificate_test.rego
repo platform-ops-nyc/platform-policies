@@ -1,4 +1,4 @@
-package main
+package cert
 
 test_expired_cert_is_expired {
 
