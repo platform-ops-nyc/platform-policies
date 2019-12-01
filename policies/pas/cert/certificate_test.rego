@@ -22,7 +22,7 @@ test_non_expired_cert_is_not_expired {
 }
 
 test_get_certificate_expiry {
-    actual := get_certificate_expiry([fakeCert])
+    actual := get_certificate_expiry(fakeCert)
     expected := "2019-10-13T15:16:21Z"
 
     actual[_] == expected
@@ -30,7 +30,7 @@ test_get_certificate_expiry {
 }
 
 test_get_certificate_expiry_two {
-    actual := get_certificate_expiry([fakeCert2])
+    actual := get_certificate_expiry(fakeCert2)
     expected := "2018-03-18T15:40:19Z"
 
     actual[_] == expected
@@ -43,7 +43,7 @@ test_get_multiple_expiry {
             "2018-03-18T15:40:19Z",
     ]
 
-    actual := get_certificate_expiry(mockCerts)
+    actual := get_certificate_expiry(concat("", mockCerts))
 
     actual == expected
 }
