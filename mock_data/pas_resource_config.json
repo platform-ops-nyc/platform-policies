@@ -1,0 +1,224 @@
+{
+  "resources": [
+    {
+      "identifier": "database",
+      "description": "Database",
+      "instances": "",
+      "instances_best_fit": 1,
+      "instance_type_id": "",
+      "instance_type_best_fit": "large.disk",
+      "persistent_disk_mb": 102400,
+      "persistent_disk_best_fit": 100000
+    },
+    {
+      "identifier": "blobstore",
+      "description": "Stores droplets and app packages on behalf of Cloud Controller",
+      "instances": "",
+      "instances_best_fit": 1,
+      "instance_type_id": "",
+      "instance_type_best_fit": "medium",
+      "persistent_disk_mb": 102400,
+      "persistent_disk_best_fit": 102400
+    },
+    {
+      "identifier": "control",
+      "description": "Control",
+      "instances": "",
+      "instances_best_fit": 1,
+      "instance_type_id": "",
+      "instance_type_best_fit": "xlarge.disk"
+    },
+    {
+      "identifier": "compute",
+      "description": "Compute",
+      "instances": "",
+      "instances_best_fit": 1,
+      "instance_type_id": "",
+      "instance_type_best_fit": "xlarge.disk"
+    },
+    {
+      "identifier": "nats",
+      "description": "Acts as the Pivotal Application Service message bus",
+      "instances": "",
+      "instances_best_fit": 0,
+      "instance_type_id": "",
+      "instance_type_best_fit": "micro"
+    },
+    {
+      "identifier": "nfs_server",
+      "description": "Stores droplets and app packages on behalf of Cloud Controller",
+      "instances": "",
+      "instances_best_fit": 0,
+      "instance_type_id": "",
+      "instance_type_best_fit": "medium",
+      "persistent_disk_mb": 102400,
+      "persistent_disk_best_fit": 102400
+    },
+    {
+      "identifier": "mysql_proxy",
+      "description": "MySQL Proxy",
+      "instances": "",
+      "instances_best_fit": 0,
+      "instance_type_id": "",
+      "instance_type_best_fit": "micro"
+    },
+    {
+      "identifier": "mysql",
+      "description": "Multi-tenant MySQL server.",
+      "instances": "",
+      "instances_best_fit": 0,
+      "instance_type_id": "",
+      "instance_type_best_fit": "large.disk",
+      "persistent_disk_mb": 102400,
+      "persistent_disk_best_fit": 100000
+    },
+    {
+      "identifier": "backup_restore",
+      "description": "Contains the backup and restore scripts for use with BBR CLI. This VM must be set to 1 instance in order to take a backup using BBR.",
+      "instances": "",
+      "instances_best_fit": 1,
+      "instance_type_id": "",
+      "instance_type_best_fit": "micro",
+      "persistent_disk_mb": 204800,
+      "persistent_disk_best_fit": 200000
+    },
+    {
+      "identifier": "diego_database",
+      "description": "An datastore node for Diego",
+      "instances": "",
+      "instances_best_fit": 0,
+      "instance_type_id": "",
+      "instance_type_best_fit": "micro"
+    },
+    {
+      "identifier": "uaa",
+      "description": "Authentication and Authorization service for Pivotal Application Service",
+      "instances": "",
+      "instances_best_fit": 0,
+      "instance_type_id": "",
+      "instance_type_best_fit": "medium.disk"
+    },
+    {
+      "identifier": "cloud_controller",
+      "description": "Coordinates Pivotal Application Service application lifecycles",
+      "instances": "",
+      "instances_best_fit": 0,
+      "instance_type_id": "",
+      "instance_type_best_fit": "medium.disk"
+    },
+    {
+      "identifier": "ha_proxy",
+      "description": "HAProxy is the default load balancer for SSL termination. Alternatively, you\ncan use your own load balancer and forward traffic to the Pivotal Application\nService router IP. Self signed certificates will function properly.\n",
+      "instances": "",
+      "instances_best_fit": 0,
+      "instance_type_id": "",
+      "instance_type_best_fit": "micro"
+    },
+    {
+      "identifier": "diego_brain",
+      "description": "Diego Brain",
+      "instances": "",
+      "instances_best_fit": 0,
+      "instance_type_id": "",
+      "instance_type_best_fit": "small"
+    },
+    {
+      "identifier": "router",
+      "description": "Routers route Internet traffic to applications and between Pivotal\nApplication Service components.\n",
+      "instances": "",
+      "instances_best_fit": 1,
+      "instance_type_id": "",
+      "instance_type_best_fit": "micro.cpu"
+    },
+    {
+      "identifier": "mysql_monitor",
+      "description": "Monitors the MySQL Cluster",
+      "instances": "",
+      "instances_best_fit": 1,
+      "instance_type_id": "",
+      "instance_type_best_fit": "micro"
+    },
+    {
+      "identifier": "clock_global",
+      "description": "Schedules asynchronous tasks for cloud controller",
+      "instances": "",
+      "instances_best_fit": 0,
+      "instance_type_id": "",
+      "instance_type_best_fit": "medium.disk"
+    },
+    {
+      "identifier": "cloud_controller_worker",
+      "description": "Worker for cloud controller asynchronous tasks",
+      "instances": "",
+      "instances_best_fit": 0,
+      "instance_type_id": "",
+      "instance_type_best_fit": "micro"
+    },
+    {
+      "identifier": "diego_cell",
+      "description": "Diego Cell",
+      "instances": "",
+      "instances_best_fit": 0,
+      "instance_type_id": "medium",
+      "instance_type_best_fit": "xlarge.disk"
+    },
+    {
+      "identifier": "loggregator_trafficcontroller",
+      "description": "Loggregator trafficcontroller distributes requests to Loggregator servers",
+      "instances": "",
+      "instances_best_fit": 0,
+      "instance_type_id": "",
+      "instance_type_best_fit": "micro"
+    },
+    {
+      "identifier": "doppler",
+      "description": "Doppler server collects application logs",
+      "instances": "",
+      "instances_best_fit": 0,
+      "instance_type_id": "",
+      "instance_type_best_fit": "medium.mem"
+    },
+    {
+      "identifier": "tcp_router",
+      "description": "TCP Routers route TCP traffic.",
+      "instances": 0,
+      "instances_best_fit": 1,
+      "instance_type_id": "",
+      "instance_type_best_fit": "micro",
+      "persistent_disk_mb": 1024,
+      "persistent_disk_best_fit": 1024
+    },
+    {
+      "identifier": "credhub",
+      "description": "CredHub",
+      "instances": "",
+      "instances_best_fit": 0,
+      "instance_type_id": "",
+      "instance_type_best_fit": "large"
+    },
+    {
+      "identifier": "istio_control",
+      "description": "This configures the istio routers to serve routes",
+      "instances": 0,
+      "instances_best_fit": 1,
+      "instance_type_id": "",
+      "instance_type_best_fit": "large"
+    },
+    {
+      "identifier": "istio_router",
+      "description": "Istio based replacement for Gorouter",
+      "instances": 0,
+      "instances_best_fit": 2,
+      "instance_type_id": "",
+      "instance_type_best_fit": "large"
+    },
+    {
+      "identifier": "route_syncer",
+      "description": "Does bulk syncing of Cloud Controller routes with Copilot.",
+      "instances": 0,
+      "instances_best_fit": 1,
+      "instance_type_id": "",
+      "instance_type_best_fit": "large"
+    }
+  ]
+}

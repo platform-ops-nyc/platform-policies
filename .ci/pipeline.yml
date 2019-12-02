@@ -80,7 +80,7 @@ jobs:
               sudo mv conftest /usr/bin
               cd github-release-opa
               tar xzf source.tar.gz
-              cd pivotalservices*
+              cd pivotal*
               mv ./policies ./policy
               conftest push opapolicies.azurecr.io/policies
               service docker stop
