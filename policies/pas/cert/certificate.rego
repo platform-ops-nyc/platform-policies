@@ -6,8 +6,10 @@ parse_certificate(cert) = parsedCertificate {
 }
 
 separate_certs(certChain) = cleanedCerts {
-    addDelimeter := replace(certChain, "-----END CERTIFICATE-----\n", "-----END CERTIFICATE-----\n&&&&")
+    addDelimeter := replace(certChain, "-----END CERTIFICATE-----\n", "-----END CERTIFICATE-----\n&&&&")    
     splitCerts := split(addDelimeter, "&&&&")
+    count(splitCerts) > 0
+
     cleanedCerts := array.slice(splitCerts, 0, count(splitCerts) - 1)
 }
 
@@ -41,14 +43,24 @@ determine_if_expired(dates) = certsForRenewal {
       
 }
 
+deny_certs_not_present[msg] {
+    exists := [certs |
+                certs := input.certs
+            ]#you will need to provide a path to a cert
+    count(exists) == 0
+
+	msg = sprintf("No certs in provided, either in path or input object: %v", [exists])
+
+}
+
 deny_thirty_days[msg]{
     # must manually define path to cert. JSON input
     # key values are accessed using bracket notation rather than dot "." notation
-    cert := input.certs #you will need to provide a path to a cert
-    expirys := get_certificate_expiry(cert)
+    certs := input.certs #you will need to provide a path to a cert
+    expirys := get_certificate_expiry(certs[0])
     isExpired := determine_if_expired(expirys)
 
-    isExpired[_].expired == true
+    count(isExpired) > 0
 
 	msg = sprintf("Your certificate expires on this date %v please update cert", [isExpired])
 }
