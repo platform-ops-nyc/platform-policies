@@ -1,4 +1,4 @@
-package main
+package credhub
 
 test_deny_credhub_suite{
   deny_if_not_exactly_one_primary with input as pasKey
