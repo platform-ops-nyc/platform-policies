@@ -56,7 +56,7 @@ deny_thirty_days[msg] {
         # must manually define path to cert. JSON input
         # key values are accessed using bracket notation rather than dot "." notation
         certs := input.certs #you will need to provide a path to a cert
-        expirys := get_certificate_expiry(certs[0])
+        expirys := get_certificate_expiry(certs)
         isExpired := determine_if_expired(expirys)
 
         count(isExpired) > 0
