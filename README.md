@@ -20,5 +20,5 @@ opa test -vl policies/*
 You can also test on commit by using the included githook. From root of this directory run
 
 ```shell
-git config core.hooksPath .githooks/
+cp ./.githooks/* ./.git/hooks/
 ```
