@@ -6,8 +6,7 @@ resources:
   source:
     uri: ((github-url))
     branch: master
-    username: ((github-user))
-    password: ((github-token))
+    private_key: ((github-private-key))
 - name: github-release-opa
   type: github-release
   source:

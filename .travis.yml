@@ -1,0 +1,24 @@
+language: go
+
+go:
+  - 1.13.x
+  - tip
+
+# services:
+#   - docker
+
+before_deploy:
+  # Set up git user name and tag this commit
+  # - docker pull socialengine/github-release
+  - sudo apt-get install wget
+  - wget https://github.com/aktau/github-release/releases/download/v0.7.2/linux-amd64-github-release.tar.bz2
+  - unzip linux-amd64-github-release.tar.bz2
+  - ls -a
+  - ./bin/semantic_versioning.sh
+# deploy:
+#   provider: releases
+#   api_key: "${{ secrets.GITHUB_TOKEN }}"
+#   file: "FILE TO UPLOAD"
+#   skip_cleanup: true
+#   on:
+#     branch: master

@@ -1,4 +1,4 @@
-package main
+package diego
 
 test_vm_type_is_present {
         expected := {
@@ -13,7 +13,7 @@ test_vm_type_is_present {
                 "present": true,
         }
 
-        actual := find_vm_type(mock_api_call, "diego_cell")
+        actual := find_vm_type(mock_api_response, "diego_cell")
 
         actual == expected
 }
@@ -24,14 +24,17 @@ test_vm_type_is_absent {
                 "present": false,
         }
 
-        actual := find_vm_type(mock_bad_api_call, "diego_cell")
+        actual := find_vm_type(mock_bad_api_response, "diego_cell")
 
         actual == expected
 }
 
-mock_bad_api_call = {"resources": []}
 
-mock_api_call = {"resources": [
+
+
+mock_bad_api_response = {"resources": []}
+
+mock_api_response = {"resources": [
         {
                 "identifier": "mysql_monitor",
                 "description": "Monitors the MySQL Cluster",

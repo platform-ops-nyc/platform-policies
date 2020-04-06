@@ -41,5 +41,4 @@ if ! $PASS; then
 else
   printf "\033[0;30m\033[42mCOMMIT SUCCEEDED\033[0m\n"
 fi
-
 exit 0
